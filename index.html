@@ -123,20 +123,18 @@
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        /* Spinner for loading overlay */
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3); border-radius: 50%;
-            border-top: 4px solid var(--clr-gold); width: 40px; height: 40px;
-            animation: spin 1s linear infinite; margin: 0 auto;
+        @media (max-width: 640px) {
+            .progress-step { width: 2rem; height: 2rem; font-size: 0.75rem; }
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .hidden { display: none !important; }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- ============================================ -->
+    <!-- VIEW: PUBLIC LANDING PAGE                    -->
+    <!-- ============================================ -->
     <div id="view-landing" class="min-h-screen">
+        <!-- Hero -->
         <div class="bg-gradient-to-br from-[#1a3c34] to-[#2d5a4e] text-white hero-pattern">
             <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-24">
                 <div class="slide-up">
@@ -151,7 +149,7 @@
                         Empowering our students to excel academically, lead with purpose, and create meaningful change in their communities. Three scholarship tracks designed for every stage of growth.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <button onclick="document.getElementById('forms').scrollIntoView({behavior: 'smooth'})" class="btn-gold text-base">Download Application Forms</button>
+                        <button onclick="scrollToSection('tracks')" class="btn-gold text-base">Explore Scholarship Tracks</button>
                         <button onclick="showLogin()" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-semibold transition border border-white/20">
                             Sign In to Apply →
                         </button>
@@ -160,77 +158,182 @@
             </div>
         </div>
 
-        <div id="forms" class="max-w-5xl mx-auto px-4 sm:px-8 py-16">
-            <div class="bg-white rounded-2xl border border-[#e8e3d8] p-6 sm:p-10 gold-glow mb-16">
-                <h2 class="text-2xl font-bold mb-2" style="color: var(--clr-forest)">📋 Step 1: Download & Complete Forms</h2>
-                <p class="text-gray-500 mb-8">Before starting an application, please download and complete the required forms for your student's specific scholarship track. You will need to upload scanned copies (PDF, JPG, or PNG under 10MB) during the application process.</p>
+        <!-- Tracks Overview -->
+        <div id="tracks" class="max-w-5xl mx-auto px-4 sm:px-8 py-16">
+            <h2 class="text-3xl font-bold text-center mb-3" style="color: var(--clr-forest)">Scholarship Tracks</h2>
+            <p class="text-center text-gray-500 mb-12 max-w-xl mx-auto">Each track is tailored to a specific stage of academic and personal development.</p>
 
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2" style="color: var(--clr-sage)">
-                            <span class="text-xl">🌱</span> Budding Scholar (K-2)
-                        </h3>
-                        <div class="grid sm:grid-cols-2 gap-3">
-                            <a href="YOUR_LINK_TO_FORM_B1" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
-                                <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-700 font-bold text-sm group-hover:bg-emerald-100 transition">B1</div>
-                                <div><p class="font-semibold text-sm text-gray-800">The Change Maker Project Plan</p><p class="text-xs text-gray-400">PDF Download ↗</p></div>
-                            </a>
-                            <a href="YOUR_LINK_TO_FORM_B2" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
-                                <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-700 font-bold text-sm group-hover:bg-emerald-100 transition">B2</div>
-                                <div><p class="font-semibold text-sm text-gray-800">The Family Pledge</p><p class="text-xs text-gray-400">PDF Download ↗</p></div>
-                            </a>
-                        </div>
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <!-- Budding Scholar -->
+                <div class="track-card">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-4">
+                        <span class="text-2xl">🌱</span>
                     </div>
-
-                    <div>
-                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2" style="color: var(--clr-sage)">
-                            <span class="text-xl">💡</span> Junior Innovator (3-5)
-                        </h3>
-                        <div class="grid sm:grid-cols-2 gap-3">
-                            <a href="YOUR_LINK_TO_FORM_J1" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
-                                <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 font-bold text-sm group-hover:bg-amber-100 transition">J1</div>
-                                <div><p class="font-semibold text-sm text-gray-800">The Project Plan</p><p class="text-xs text-gray-400">PDF Download ↗</p></div>
-                            </a>
-                            <a href="YOUR_LINK_TO_FORM_J3" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
-                                <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 font-bold text-sm group-hover:bg-amber-100 transition">J3</div>
-                                <div><p class="font-semibold text-sm text-gray-800">The Project Completion Log</p><p class="text-xs text-gray-400">PDF Download ↗</p></div>
-                            </a>
-                        </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">Budding Scholar</h3>
+                    <p class="text-xs font-semibold text-emerald-600 mb-2">Grades K–2</p>
+                    <p class="text-sm text-gray-500 mb-4">For our youngest learners beginning their journey of discovery and community impact.</p>
+                    <div class="text-sm space-y-2 text-gray-600">
+                        <p class="font-semibold text-gray-700 mb-1">Required Forms:</p>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center font-bold">B1</span> Change Maker Project Plan</div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center font-bold">B2</span> Family Pledge</div>
                     </div>
+                </div>
 
-                    <div>
-                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2" style="color: var(--clr-sage)">
-                            <span class="text-xl">🏆</span> Future Leader (6-8)
-                        </h3>
-                        <div class="grid sm:grid-cols-2 gap-3">
-                            <a href="YOUR_LINK_TO_FORM_L1" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
-                                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-sm group-hover:bg-blue-100 transition">L1</div>
-                                <div><p class="font-semibold text-sm text-gray-800">Middle School Resume</p><p class="text-xs text-gray-400">PDF Download ↗</p></div>
-                            </a>
-                            <a href="YOUR_LINK_TO_FORM_L3" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
-                                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-sm group-hover:bg-blue-100 transition">L3</div>
-                                <div><p class="font-semibold text-sm text-gray-800">The Impact Proposal</p><p class="text-xs text-gray-400">PDF Download ↗</p></div>
-                            </a>
-                            <a href="YOUR_LINK_TO_FORM_L5" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
-                                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-sm group-hover:bg-blue-100 transition">L5</div>
-                                <div><p class="font-semibold text-sm text-gray-800">The Family Pledge</p><p class="text-xs text-gray-400">PDF Download ↗</p></div>
-                            </a>
-                        </div>
-                        <p class="text-xs text-gray-500 italic mt-4 pt-4 border-t border-gray-200">*Note: Form L2 (Teacher Recommendations) does not require a download. You will input the teacher contact info directly into the portal during submission.</p>
+                <!-- Junior Innovator -->
+                <div class="track-card">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-4">
+                        <span class="text-2xl">💡</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">Junior Innovator</h3>
+                    <p class="text-xs font-semibold text-amber-600 mb-2">Grades 3–5</p>
+                    <p class="text-sm text-gray-500 mb-4">For creative thinkers ready to design projects that make a real difference.</p>
+                    <div class="text-sm space-y-2 text-gray-600">
+                        <p class="font-semibold text-gray-700 mb-1">Required Forms:</p>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-amber-100 text-amber-700 text-xs flex items-center justify-center font-bold">J1</span> Family Pledge</div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-amber-100 text-amber-700 text-xs flex items-center justify-center font-bold">J2</span> Change Maker Project Plan <span class="text-xs text-gray-400">(Reference)</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-amber-100 text-amber-700 text-xs flex items-center justify-center font-bold">J3</span> Project Completion Log</div>
+                    </div>
+                </div>
+
+                <!-- Future Leader -->
+                <div class="track-card">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-4">
+                        <span class="text-2xl">🏆</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">The Future Leader</h3>
+                    <p class="text-xs font-semibold text-blue-600 mb-2">Grades 6–8</p>
+                    <p class="text-sm text-gray-500 mb-4">For aspiring leaders demonstrating academic excellence and community impact.</p>
+                    <div class="text-sm space-y-2 text-gray-600">
+                        <p class="font-semibold text-gray-700 mb-1">Required Forms:</p>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-xs flex items-center justify-center font-bold">L1</span> Middle School Resume</div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-xs flex items-center justify-center font-bold">L2</span> Request for Recommendation</div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-xs flex items-center justify-center font-bold">L3</span> Impact Proposal</div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-xs flex items-center justify-center font-bold">L4</span> Interview Prep Guide <span class="text-xs text-gray-400">(Reference)</span></div>
+                        <div class="flex items-center gap-2"><span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-xs flex items-center justify-center font-bold">L5</span> Family Pledge</div>
                     </div>
                 </div>
             </div>
 
+            <!-- Download Forms Section -->
+            <div id="forms" class="bg-white rounded-2xl border border-[#e8e3d8] p-6 sm:p-10 gold-glow mb-16">
+                <h2 class="text-2xl font-bold mb-2" style="color: var(--clr-forest)">📋 Download Application Forms</h2>
+                <p class="text-gray-500 mb-8">Download, complete, and have all forms ready before starting your application. Click any form to download.</p>
+
+                <div class="space-y-8">
+                    <!-- Budding Scholar Forms -->
+                    <div>
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2" style="color: var(--clr-sage)">
+                            <span class="text-xl">🌱</span> Budding Scholar Forms <span class="text-sm font-normal text-gray-400 ml-1">(K–2)</span>
+                        </h3>
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <a href="REPLACE_WITH_FORM_B1_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-700 font-bold text-sm group-hover:bg-emerald-100 transition">B1</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">The Change Maker Project Plan</p>
+                                    <p class="text-xs text-gray-400">PDF Download ↗</p>
+                                </div>
+                            </a>
+                            <a href="REPLACE_WITH_FORM_B2_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-700 font-bold text-sm group-hover:bg-emerald-100 transition">B2</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">The Family Pledge</p>
+                                    <p class="text-xs text-gray-400">PDF Download ↗</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Junior Innovator Forms -->
+                    <div>
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2" style="color: var(--clr-sage)">
+                            <span class="text-xl">💡</span> Junior Innovator Forms <span class="text-sm font-normal text-gray-400 ml-1">(3–5)</span>
+                        </h3>
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <a href="REPLACE_WITH_FORM_J1_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 font-bold text-sm group-hover:bg-amber-100 transition">J1</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">The Family Pledge</p>
+                                    <p class="text-xs text-gray-400">PDF Download ↗</p>
+                                </div>
+                            </a>
+                            <a href="REPLACE_WITH_FORM_J2_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 font-bold text-sm group-hover:bg-amber-100 transition">J2</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">The Change Maker Project Plan</p>
+                                    <p class="text-xs text-gray-400">PDF Reference ↗</p>
+                                </div>
+                            </a>
+                            <a href="REPLACE_WITH_FORM_J3_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 font-bold text-sm group-hover:bg-amber-100 transition">J3</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">The Project Completion Log</p>
+                                    <p class="text-xs text-gray-400">PDF Download ↗</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Future Leader Forms -->
+                    <div>
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2" style="color: var(--clr-sage)">
+                            <span class="text-xl">🏆</span> The Future Leader Forms <span class="text-sm font-normal text-gray-400 ml-1">(6–8)</span>
+                        </h3>
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <a href="REPLACE_WITH_FORM_L1_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-sm group-hover:bg-blue-100 transition">L1</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">The Middle School Resume Template</p>
+                                    <p class="text-xs text-gray-400">PDF Download ↗</p>
+                                </div>
+                            </a>
+                            <a href="REPLACE_WITH_FORM_L2_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-sm group-hover:bg-blue-100 transition">L2</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">Request for Recommendation</p>
+                                    <p class="text-xs text-gray-400">PDF Download ↗</p>
+                                </div>
+                            </a>
+                            <a href="REPLACE_WITH_FORM_L3_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-sm group-hover:bg-blue-100 transition">L3</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">The Impact Proposal</p>
+                                    <p class="text-xs text-gray-400">PDF Download ↗</p>
+                                </div>
+                            </a>
+                            <a href="REPLACE_WITH_FORM_L4_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-sm group-hover:bg-blue-100 transition">L4</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">Scholarship Board Interview Prep Guide</p>
+                                    <p class="text-xs text-gray-400">PDF Reference ↗</p>
+                                </div>
+                            </a>
+                            <a href="REPLACE_WITH_FORM_L5_LINK" target="_blank" class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#c9a84c] hover:bg-[#faf8f3] transition group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-sm group-hover:bg-blue-100 transition">L5</div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-800">The Family Pledge</p>
+                                    <p class="text-xs text-gray-400">PDF Download ↗</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ready to Apply -->
             <div class="text-center mb-16">
-                <h2 class="text-2xl font-bold mb-3" style="color: var(--clr-forest)">Step 2: Ready to Apply?</h2>
-                <p class="text-gray-500 mb-6 max-w-lg mx-auto">Make sure all your forms are completed and scanned before signing in.</p>
-                <button onclick="showLogin()" class="btn-primary text-lg px-10 py-4 shadow-xl">
-                    Sign In with Google to Upload & Submit →
+                <h2 class="text-2xl font-bold mb-3" style="color: var(--clr-forest)">Ready to Apply?</h2>
+                <p class="text-gray-500 mb-6 max-w-lg mx-auto">Make sure all your forms are completed before signing in. You'll need to upload them during the application process.</p>
+                <button onclick="showLogin()" class="btn-primary text-lg px-10 py-4">
+                    Sign In with Google to Begin →
                 </button>
+                <p class="text-sm text-gray-400 mt-4">Don't have an account or have questions? Email <a href="mailto:scholarship@svaschool.org" class="font-semibold hover:underline" style="color: var(--clr-sage)">scholarship@svaschool.org</a></p>
             </div>
         </div>
     </div>
 
+    <!-- ============================================ -->
+    <!-- VIEW: LOGIN OVERLAY                          -->
+    <!-- ============================================ -->
     <div id="view-login" class="hidden overlay">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8 sm:p-10 fade-in text-center relative">
             <button onclick="hideLogin()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">&times;</button>
@@ -239,53 +342,69 @@
             </div>
             <h2 class="text-2xl font-bold mb-2" style="color: var(--clr-forest)">Parent Sign In</h2>
             <p class="text-gray-500 mb-6 text-sm leading-relaxed">
-                Please sign in with your Google account. We will verify your identity against the SVA database to retrieve your eligible students.
+                Please sign in with the Google account registered with SVA. We'll verify your identity and show your children's scholarship applications.
             </p>
             <div class="flex justify-center mb-4">
-                <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID_HERE" data-callback="handleCredentialResponse" data-auto_select="false"></div>
-                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left"></div>
+                <div id="g_id_onload"
+                     data-client_id="REPLACE_WITH_YOUR_GOOGLE_CLIENT_ID"
+                     data-callback="handleCredentialResponse"
+                     data-auto_select="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="outline"
+                     data-text="sign_in_with"
+                     data-shape="rectangular"
+                     data-logo_alignment="left">
+                </div>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-3 mt-2">
+                <p class="text-xs text-gray-500 leading-relaxed">Don't have an account or have questions?<br>Email <a href="mailto:scholarship@svaschool.org" class="font-semibold hover:underline" style="color: var(--clr-sage)">scholarship@svaschool.org</a> to get set up.</p>
             </div>
         </div>
     </div>
 
-    <div id="loading-overlay" class="hidden overlay" style="z-index: 9999; background: rgba(26, 60, 52, 0.9);">
-        <div class="text-center text-white fade-in">
-            <div class="spinner mb-4"></div>
-            <h3 id="loading-text" class="text-xl font-bold font-lora tracking-wide text-white">Verifying Account...</h3>
-            <p class="text-sm text-white/70 mt-2">Please do not close this window.</p>
-        </div>
-    </div>
-
+    <!-- ============================================ -->
+    <!-- VIEW: MAIN APP (post-login)                  -->
+    <!-- ============================================ -->
     <div id="view-app" class="hidden min-h-screen">
+        <!-- App Header -->
         <div class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
             <div class="max-w-4xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
                 <div>
                     <h1 class="text-lg font-bold" style="color: var(--clr-forest)">SVA Scholarship Portal</h1>
-                    <p class="text-xs text-gray-500" id="user-display">Logged in as Parent</p>
+                    <p class="text-xs text-gray-500" id="user-display">Verifying...</p>
                 </div>
                 <div class="flex items-center gap-4">
-                    <button onclick="goToChildList()" class="text-sm text-gray-500 hover:text-gray-800 transition hidden" id="btn-back">← Back to Students</button>
-                    <button onclick="window.location.reload()" class="text-sm text-gray-500 hover:text-gray-800 transition">Sign Out</button>
+                    <button onclick="goToChildList()" class="text-sm text-gray-500 hover:text-gray-800 transition hidden" id="btn-back">← Back</button>
+                    <button onclick="logout()" class="text-sm text-gray-500 hover:text-gray-800 transition">Sign Out</button>
                 </div>
             </div>
         </div>
 
         <div class="max-w-4xl mx-auto px-4 sm:px-8 py-8">
+            <!-- CHILD SELECTION -->
             <div id="section-children" class="fade-in">
-                <h2 class="text-2xl font-bold mb-2" style="color: var(--clr-forest)">Select Student</h2>
-                <p class="text-gray-500 mb-6">We found the following students registered to your account. Select a child to begin their application upload.</p>
+                <h2 class="text-2xl font-bold mb-2" style="color: var(--clr-forest)">Your Children</h2>
+                <p class="text-gray-500 mb-6">Select a child to start or continue their scholarship application.</p>
                 <div id="children-list" class="grid sm:grid-cols-2 gap-4">
-                    </div>
+                    <!-- Populated dynamically -->
+                </div>
             </div>
 
+            <!-- APPLICATION FLOW -->
             <div id="section-application" class="hidden fade-in">
+                <!-- Student Info Banner -->
                 <div class="bg-white rounded-xl border border-gray-200 p-5 mb-6 flex items-center justify-between">
                     <div>
                         <h2 class="text-xl font-bold" style="color: var(--clr-forest)" id="app-student-name">Student Name</h2>
                         <p class="text-sm text-gray-500" id="app-student-track">Track • Grade</p>
                     </div>
+                    <div id="app-status-badge" class="px-3 py-1 rounded-full text-xs font-bold">In Progress</div>
                 </div>
 
+                <!-- Progress Bar -->
                 <div class="flex items-center justify-center mb-8 px-4">
                     <div class="progress-step active" id="pstep-1">1</div>
                     <div class="progress-line" id="pline-1"></div>
@@ -294,380 +413,575 @@
                     <div class="progress-step" id="pstep-3">3</div>
                 </div>
 
-                <div id="step-1" class="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-sm">
+                <!-- Step 1: Income Attestation -->
+                <div id="step-1" class="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
                     <div class="text-center mb-8">
-                        <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style="background: var(--clr-gold-light); color: var(--clr-gold);">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style="background: var(--clr-gold-light)">
+                            <span class="text-2xl">📜</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">Eligibility & Readiness</h3>
-                        <p class="text-gray-500 text-sm">Please confirm the following to proceed to document uploads.</p>
+                        <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">Before You Begin</h3>
+                        <p class="text-gray-500 text-sm max-w-lg mx-auto">Please read the following carefully and confirm your eligibility before proceeding with the application.</p>
+                    </div>
+
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg mb-6">
+                        <p class="text-sm text-amber-900 font-semibold mb-1">⚠️ Important: Have All Documents Ready</p>
+                        <p class="text-sm text-amber-800">Please only start this application when <strong>all required forms</strong> have been completed, signed, and scanned/photographed. You will need to upload each form as a PDF or image (JPG/PNG) file, each under 10 MB.</p>
                     </div>
 
                     <div class="space-y-4 mb-8">
-                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition">
-                            <input type="checkbox" id="check-income" class="mt-1 w-5 h-5 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500">
-                            <span class="text-sm text-gray-700 leading-relaxed">I attest that our total household income is <strong>under $260,000/year</strong>, and I agree to provide verification documentation if this application is approved.</span>
+                        <label class="flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-[#c9a84c] transition cursor-pointer">
+                            <input type="checkbox" id="chk-income" class="mt-1 w-5 h-5 accent-[#4a7c6f]">
+                            <div>
+                                <p class="font-semibold text-sm text-gray-800">Income Eligibility Attestation</p>
+                                <p class="text-xs text-gray-500 mt-1">I attest that my total household income is less than <strong>$260,000 per year</strong>, and I agree to provide income verification documents if my child's application is approved for the scholarship.</p>
+                            </div>
                         </label>
-                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition">
-                            <input type="checkbox" id="check-ready" class="mt-1 w-5 h-5 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500">
-                            <span class="text-sm text-gray-700 leading-relaxed">I confirm that <strong>all required documents are completed, scanned</strong>, and ready to be uploaded (PDF, JPG, or PNG, max 10MB each).</span>
-                        </label>
-                    </div>
-                    <div class="flex justify-end">
-                        <button onclick="nextStep(2)" class="btn-primary">Continue to Uploads →</button>
-                    </div>
-                </div>
-
-                <div id="step-2" class="hidden bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-sm">
-                    <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">Upload Documents</h3>
-                    <p class="text-gray-500 text-sm mb-6 pb-6 border-b border-gray-100">Click each box to select a file. Limit 10MB per file.</p>
-                    
-                    <div id="dynamic-uploads" class="space-y-5 mb-8">
-                        </div>
-
-                    <div class="flex justify-between items-center pt-6 border-t border-gray-100">
-                        <button onclick="prevStep(1)" class="text-gray-500 hover:text-gray-800 font-semibold text-sm">← Back</button>
-                        <button onclick="nextStep(3)" class="btn-primary">Review & Sign →</button>
-                    </div>
-                </div>
-
-                <div id="step-3" class="hidden bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-sm">
-                    <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">Final Review & Signature</h3>
-                    <p class="text-gray-500 text-sm mb-6 pb-6 border-b border-gray-100">Please review your agreements before final submission.</p>
-
-                    <div class="space-y-4 mb-8">
-                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-gray-200 cursor-pointer bg-red-50/30">
-                            <input type="checkbox" id="check-truth" class="mt-1 w-5 h-5 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500">
-                            <span class="text-sm text-gray-700 leading-relaxed">I certify that all information provided is true and accurate to the best of my knowledge, and that <strong>no Artificial Intelligence (AI) tools were used</strong> to assist my child in generating the content of these submissions.</span>
+                        <label class="flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-[#c9a84c] transition cursor-pointer">
+                            <input type="checkbox" id="chk-docs-ready" class="mt-1 w-5 h-5 accent-[#4a7c6f]">
+                            <div>
+                                <p class="font-semibold text-sm text-gray-800">Documents Ready Confirmation</p>
+                                <p class="text-xs text-gray-500 mt-1">I confirm that all required forms for this scholarship track have been fully completed and are ready for upload.</p>
+                            </div>
                         </label>
                     </div>
 
-                    <div class="flex justify-between items-center pt-6 border-t border-gray-100">
-                        <button onclick="prevStep(2)" class="text-gray-500 hover:text-gray-800 font-semibold text-sm">← Back to Uploads</button>
-                        <button onclick="submitApplication()" id="btn-submit" class="btn-gold">Submit Application</button>
-                    </div>
-                </div>
-
-                <div id="step-success" class="hidden bg-white rounded-2xl border border-gray-200 p-10 shadow-sm text-center">
-                    <div class="w-20 h-20 rounded-full bg-[#eef6f2] flex items-center justify-center mx-auto mb-6">
-                        <span class="text-4xl">🎉</span>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-3" style="color: var(--clr-forest)">Application Received!</h3>
-                    <p class="text-gray-500 mb-8 max-w-md mx-auto">Your documents have been securely uploaded to the SVA portal. The Scholarship Board will review your submission and contact you soon.</p>
-                    <button onclick="goToChildList()" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-8 rounded-lg transition">
-                        Return to Dashboard
+                    <button onclick="goToStep(2)" id="btn-step1-next" disabled class="btn-primary w-full py-3 text-center">
+                        Continue to Upload Forms →
                     </button>
+                </div>
+
+                <!-- Step 2: Upload Forms -->
+                <div id="step-2" class="hidden bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">Upload Required Forms</h3>
+                    <p class="text-gray-500 text-sm mb-6">Upload each form as a <strong>PDF, JPG, or PNG</strong> file (max 10 MB each).</p>
+
+                    <div id="upload-forms-container" class="space-y-4 mb-8">
+                        <!-- Populated dynamically based on track -->
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button onclick="goToStep(1)" class="px-6 py-3 rounded-lg border border-gray-300 text-gray-600 font-semibold hover:bg-gray-50 transition">← Back</button>
+                        <button onclick="goToStep(3)" id="btn-step2-next" disabled class="btn-primary flex-1 py-3 text-center">
+                            Continue to Final Review →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Final Review & Submit -->
+                <div id="step-3" class="hidden bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--clr-forest)">Review & Submit</h3>
+                    <p class="text-gray-500 text-sm mb-6">Please review your uploads and confirm the declarations below.</p>
+
+                    <!-- Review Summary -->
+                    <div id="review-summary" class="bg-gray-50 rounded-xl p-5 mb-6 space-y-2">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <!-- Final Attestations -->
+                    <div class="space-y-4 mb-8">
+                        <label class="flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-[#c9a84c] transition cursor-pointer">
+                            <input type="checkbox" id="chk-truth" class="mt-1 w-5 h-5 accent-[#4a7c6f]" onchange="checkFinalReady()">
+                            <div>
+                                <p class="font-semibold text-sm text-gray-800">Truthfulness Declaration</p>
+                                <p class="text-xs text-gray-500 mt-1">I declare that all information provided in this application is truthful and accurate to the best of my knowledge. I understand that providing false information may result in disqualification.</p>
+                            </div>
+                        </label>
+                        <label class="flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-[#c9a84c] transition cursor-pointer">
+                            <input type="checkbox" id="chk-no-ai" class="mt-1 w-5 h-5 accent-[#4a7c6f]" onchange="checkFinalReady()">
+                            <div>
+                                <p class="font-semibold text-sm text-gray-800">Original Work Declaration</p>
+                                <p class="text-xs text-gray-500 mt-1">I confirm that no artificial intelligence (AI) tools were used to assist in completing my child's scholarship submissions. All work presented is the original effort of the student.</p>
+                            </div>
+                        </label>
+                        <label class="flex items-start gap-3 p-4 rounded-lg border border-gray-200 hover:border-[#c9a84c] transition cursor-pointer">
+                            <input type="checkbox" id="chk-income-verify" class="mt-1 w-5 h-5 accent-[#4a7c6f]" onchange="checkFinalReady()">
+                            <div>
+                                <p class="font-semibold text-sm text-gray-800">Income Verification Consent</p>
+                                <p class="text-xs text-gray-500 mt-1">I understand and agree that if this application is approved, I will be required to share documentation verifying that my total household income is below $260,000/year.</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button onclick="goToStep(2)" class="px-6 py-3 rounded-lg border border-gray-300 text-gray-600 font-semibold hover:bg-gray-50 transition">← Back</button>
+                        <button onclick="submitApplication()" id="btn-submit" disabled class="btn-gold flex-1 py-3 text-center text-base">
+                            ✦ Submit Application
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Success -->
+                <div id="step-success" class="hidden text-center py-16 fade-in">
+                    <div class="text-6xl mb-6">🎉</div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--clr-forest)">Application Submitted!</h3>
+                    <p class="text-gray-500 mb-3 max-w-md mx-auto">JazakAllah Khair for submitting your child's scholarship application. A confirmation email has been sent to your inbox.</p>
+                    <p class="text-gray-400 text-sm mb-8 max-w-md mx-auto">The scholarship committee will review it and reach out with next steps. If you have any questions, email <a href="mailto:scholarship@svaschool.org" class="font-semibold hover:underline" style="color: var(--clr-sage)">scholarship@svaschool.org</a>.</p>
+                    <button onclick="goToChildList()" class="btn-primary">← Back to My Children</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ============================================ -->
+    <!-- LOADING OVERLAY                              -->
+    <!-- ============================================ -->
+    <div id="loading-overlay" class="hidden overlay" style="background: rgba(0,0,0,0.5);">
+        <div class="bg-white rounded-2xl p-8 text-center max-w-sm mx-4 fade-in">
+            <div class="animate-spin w-10 h-10 border-4 border-gray-200 border-t-[#4a7c6f] rounded-full mx-auto mb-4"></div>
+            <p class="font-semibold text-gray-700" id="loading-text">Processing...</p>
+        </div>
+    </div>
+
 <script>
-    // =========================================
-    // CONFIGURATION & STATE
-    // =========================================
-    const BACKEND_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"; // Replace with your GAS Web App URL
-    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+// ==========================================
+// CONFIGURATION
+// ==========================================
+const BACKEND_URL = "REPLACE_WITH_YOUR_WEBAPP_URL";
 
-    let parentToken = "";
-    let parentEmail = "";
-    let CHILDREN = [];
-    let CURRENT_CHILD = null;
-    let UPLOADS_DATA = {}; // Will hold Base64 strings: { 'file_b1': {name, mimeType, data} }
+let USER_TOKEN = "";
+let USER_EMAIL = "";
+let USER_NAME = "";
+let CHILDREN = [];
+let CURRENT_CHILD = null;
+let UPLOAD_DATA = {};  // { formId: { file: File, base64: string, fileName: string } }
+let L2_DATA = {};      // teacher info for Form L2
 
-    // =========================================
-    // NAVIGATION & UI HELPERS
-    // =========================================
-    function showLogin() { document.getElementById('view-login').classList.remove('hidden'); }
-    function hideLogin() { document.getElementById('view-login').classList.add('hidden'); }
-    
-    function showLoading(text) {
-        document.getElementById('loading-text').innerText = text || "Processing...";
-        document.getElementById('loading-overlay').classList.remove('hidden');
-    }
-    function hideLoading() {
-        document.getElementById('loading-overlay').classList.add('hidden');
-    }
+// Track form definitions
+const TRACK_FORMS = {
+    "Budding Scholar": [
+        { id: "B1", name: "The Change Maker Project Plan", type: "upload" },
+        { id: "B2", name: "The Family Pledge", type: "upload" }
+    ],
+    "Junior Innovator": [
+        { id: "J1", name: "The Family Pledge", type: "upload" },
+        { id: "J3", name: "The Project Completion Log", type: "upload" }
+    ],
+    "Future Leader": [
+        { id: "L1", name: "The Middle School Resume", type: "upload" },
+        { id: "L2", name: "Request for Recommendation", type: "teacher_info" },
+        { id: "L3", name: "The Impact Proposal", type: "upload" },
+        { id: "L5", name: "The Family Pledge", type: "upload" }
+    ]
+};
 
-    function goToChildList() {
-        document.getElementById('btn-back').classList.add('hidden');
-        document.getElementById('section-application').classList.add('hidden');
-        
-        // Reset steps
-        ['step-1', 'step-2', 'step-3', 'step-success'].forEach(s => document.getElementById(s).classList.add('hidden'));
-        document.getElementById('step-1').classList.remove('hidden');
-        updateProgress(1);
-        
-        document.getElementById('section-children').classList.remove('hidden');
-    }
+// ==========================================
+// LANDING PAGE NAVIGATION
+// ==========================================
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
 
-    // =========================================
-    // AUTH & FETCH LOGIC
-    // =========================================
-    function handleCredentialResponse(response) {
-        hideLogin();
-        showLoading("Verifying Account...");
-        
-        parentToken = response.credential;
-        const payload = JSON.parse(atob(response.credential.split('.')[1]));
-        parentEmail = payload.email;
-        
-        // Fetch eligible students from Google Apps Script backend
-        fetch(BACKEND_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({
-                action: 'getStudents',
-                token: parentToken,
-                parentEmail: parentEmail
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            hideLoading();
-            if (data.status === 'success' && data.data.length > 0) {
-                CHILDREN = data.data; // Expected: [{id, name, grade, track}, ...]
-                document.getElementById('view-landing').classList.add('hidden');
-                document.getElementById('view-app').classList.remove('hidden');
-                document.getElementById('user-display').innerText = `Logged in as ${parentEmail}`;
-                renderChildren();
-            } else {
-                alert("No eligible students found linked to this email address in our database. Please contact the SVA administration.");
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            hideLoading();
-            alert("Unable to connect to the backend database. Please try again later.");
-        });
-    }
+function showLogin() {
+    document.getElementById('view-login').classList.remove('hidden');
+}
 
-    function renderChildren() {
-        const list = document.getElementById('children-list');
-        list.innerHTML = '';
-        CHILDREN.forEach(child => {
-            list.innerHTML += `
-                <div class="child-card" onclick="startApplication('${child.id}')">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-500">${child.name.charAt(0)}</div>
-                        <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded">Not Started</span>
-                    </div>
-                    <h3 class="text-lg font-bold" style="color: var(--clr-forest)">${child.name}</h3>
-                    <p class="text-sm text-gray-500">${child.grade} • ${child.track}</p>
+function hideLogin() {
+    document.getElementById('view-login').classList.add('hidden');
+}
+
+// ==========================================
+// AUTH
+// ==========================================
+function handleCredentialResponse(response) {
+    USER_TOKEN = response.credential;
+    const payload = JSON.parse(atob(response.credential.split('.')[1]));
+    USER_EMAIL = payload.email;
+    USER_NAME = payload.name || payload.email;
+
+    hideLogin();
+    showLoading("Verifying your identity...");
+
+    // Verify parent against Students sheet
+    fetch(BACKEND_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'verifyParent', token: USER_TOKEN })
+    })
+    .then(res => res.json())
+    .then(data => {
+        hideLoading();
+        if (data.status === 'success' && data.children && data.children.length > 0) {
+            CHILDREN = data.children;
+            document.getElementById('view-landing').classList.add('hidden');
+            document.getElementById('view-app').classList.remove('hidden');
+            document.getElementById('user-display').innerText = USER_EMAIL;
+            renderChildren();
+        } else {
+            alert(data.message || "No students found linked to your email. Please email scholarship@svaschool.org for assistance.");
+        }
+    })
+    .catch(err => {
+        hideLoading();
+        alert("Failed to connect to the server. Please try again.");
+    });
+}
+
+function logout() {
+    USER_TOKEN = "";
+    USER_EMAIL = "";
+    CHILDREN = [];
+    CURRENT_CHILD = null;
+    UPLOAD_DATA = {};
+    L2_DATA = {};
+    document.getElementById('view-app').classList.add('hidden');
+    document.getElementById('view-landing').classList.remove('hidden');
+}
+
+// ==========================================
+// CHILDREN LIST
+// ==========================================
+function renderChildren() {
+    const container = document.getElementById('children-list');
+    const trackIcons = { "Budding Scholar": "🌱", "Junior Innovator": "💡", "Future Leader": "🏆" };
+    const trackColors = { "Budding Scholar": "bg-emerald-100 text-emerald-700", "Junior Innovator": "bg-amber-100 text-amber-700", "Future Leader": "bg-blue-100 text-blue-700" };
+
+    container.innerHTML = CHILDREN.map(child => `
+        <div class="child-card" onclick="selectChild('${child.studentId}')">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl" style="background: var(--clr-gold-light)">
+                    ${trackIcons[child.track] || '📚'}
                 </div>
-            `;
-        });
-    }
-
-    // =========================================
-    // APPLICATION WIZARD LOGIC
-    // =========================================
-    function startApplication(childId) {
-        CURRENT_CHILD = CHILDREN.find(c => String(c.id) === String(childId));
-        UPLOADS_DATA = {}; // Reset files
-
-        document.getElementById('app-student-name').innerText = CURRENT_CHILD.name;
-        document.getElementById('app-student-track').innerText = `${CURRENT_CHILD.track} • ${CURRENT_CHILD.grade}`;
-        
-        // Reset checkboxes
-        document.getElementById('check-income').checked = false;
-        document.getElementById('check-ready').checked = false;
-        document.getElementById('check-truth').checked = false;
-
-        buildUploadForms(CURRENT_CHILD.track);
-
-        document.getElementById('section-children').classList.add('hidden');
-        document.getElementById('section-application').classList.remove('hidden');
-        document.getElementById('btn-back').classList.remove('hidden');
-    }
-
-    function updateProgress(step) {
-        // Reset all
-        for(let i=1; i<=3; i++) {
-            const circle = document.getElementById(`pstep-${i}`);
-            circle.classList.remove('active', 'done');
-            if(i < 3) document.getElementById(`pline-${i}`).classList.remove('done');
-        }
-        // Fill up to current
-        for(let i=1; i<step; i++) {
-            document.getElementById(`pstep-${i}`).classList.add('done');
-            document.getElementById(`pline-${i}`).classList.add('done');
-        }
-        document.getElementById(`pstep-${step}`).classList.add('active');
-    }
-
-    function nextStep(step) {
-        if (step === 2) {
-            if(!document.getElementById('check-income').checked || !document.getElementById('check-ready').checked) {
-                alert("Please complete both attestations to proceed."); return;
-            }
-        }
-        if (step === 3) {
-            // Validate Files
-            const fileInputs = document.querySelectorAll('.file-input-hidden');
-            for(let input of fileInputs) {
-                if(!UPLOADS_DATA[input.dataset.id]) {
-                    alert("Please upload all required files."); return;
-                }
-            }
-            // Validate L2 Form if Future Leader
-            if(CURRENT_CHILD.track === "Future Leader") {
-                const reqs = ['t1_name','t1_email','t1_school','t2_name','t2_email','t2_school'];
-                for(let id of reqs) {
-                    if(!document.getElementById(id).value.trim()) {
-                        alert("Please fill out all Teacher Recommendation fields."); return;
-                    }
-                }
-            }
-        }
-        document.getElementById(`step-${step-1}`).classList.add('hidden');
-        document.getElementById(`step-${step}`).classList.remove('hidden');
-        updateProgress(step);
-    }
-
-    function prevStep(step) {
-        document.getElementById(`step-${step+1}`).classList.add('hidden');
-        document.getElementById(`step-${step}`).classList.remove('hidden');
-        updateProgress(step);
-    }
-
-    // =========================================
-    // DYNAMIC FILE UPLOAD BUILDER
-    // =========================================
-    function buildUploadForms(track) {
-        const container = document.getElementById('dynamic-uploads');
-        container.innerHTML = '';
-
-        if (track === "Budding Scholar") {
-            container.innerHTML += createUploadZone('Form B1 - Project Plan', 'file_b1');
-            container.innerHTML += createUploadZone('Form B2 - Family Pledge', 'file_b2');
-        } else if (track === "Junior Innovator") {
-            container.innerHTML += createUploadZone('Form J1 - Family Pledge', 'file_j1');
-            container.innerHTML += createUploadZone('Form J3 - Project Log', 'file_j3');
-        } else if (track === "Future Leader") {
-            container.innerHTML += createUploadZone('Form L1 - Resume', 'file_l1');
-            container.innerHTML += createUploadZone('Form L3 - Impact Proposal', 'file_l3');
-            container.innerHTML += createUploadZone('Form L5 - Family Pledge', 'file_l5');
-            
-            // Add L2 Teacher Manual Inputs
-            container.innerHTML += `
-                <div class="mt-8 p-6 rounded-xl border border-gray-200 bg-gray-50">
-                    <h4 class="font-bold text-gray-800 mb-2">Form L2 - Teacher Recommendations</h4>
-                    <p class="text-sm text-gray-500 mb-4">Provide contact info for two teachers. The SVA board will contact them directly.</p>
-                    <div class="grid sm:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <p class="text-xs font-bold text-gray-500 uppercase mb-2">Teacher 1</p>
-                            <input type="text" id="t1_name" placeholder="Full Name" class="form-input text-sm mb-2">
-                            <input type="email" id="t1_email" placeholder="Email Address" class="form-input text-sm mb-2">
-                            <input type="text" id="t1_school" placeholder="School Name" class="form-input text-sm">
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-gray-500 uppercase mb-2">Teacher 2</p>
-                            <input type="text" id="t2_name" placeholder="Full Name" class="form-input text-sm mb-2">
-                            <input type="email" id="t2_email" placeholder="Email Address" class="form-input text-sm mb-2">
-                            <input type="text" id="t2_school" placeholder="School Name" class="form-input text-sm">
-                        </div>
-                    </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-gray-800">${child.name}</h3>
+                    <p class="text-xs text-gray-400">${child.studentEmail || ''}</p>
+                    <p class="text-sm text-gray-500">${child.grade}</p>
                 </div>
-            `;
-        }
-    }
-
-    function createUploadZone(label, id) {
-        return `
-            <div>
-                <p class="font-bold text-sm text-gray-800 mb-2">${label}</p>
-                <div class="upload-zone" id="zone_${id}" onclick="document.getElementById('input_${id}').click()">
-                    <span id="text_${id}" class="text-sm font-semibold text-gray-500">📄 Click to upload (PDF/JPG/PNG)</span>
-                    <input type="file" id="input_${id}" accept=".pdf, .jpg, .jpeg, .png" class="hidden file-input-hidden" data-id="${id}" onchange="handleFile(this, '${id}')">
+                <div>
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold ${trackColors[child.track] || 'bg-gray-100 text-gray-600'}">${child.track}</span>
+                    ${child.status === 'Submitted' ? '<div class="text-xs text-green-600 font-semibold mt-1 text-right">✓ Submitted</div>' : ''}
                 </div>
             </div>
-        `;
+        </div>
+    `).join('');
+}
+
+function selectChild(studentId) {
+    CURRENT_CHILD = CHILDREN.find(c => c.studentId === studentId);
+    if (!CURRENT_CHILD) return;
+
+    if (CURRENT_CHILD.status === 'Submitted') {
+        alert("This application has already been submitted. Contact the scholarship committee if you need to make changes.");
+        return;
     }
 
-    function handleFile(input, id) {
-        if (input.files.length === 0) return;
-        const file = input.files[0];
-        
-        if (file.size > MAX_FILE_SIZE) {
-            alert(`File is too large (${(file.size/1024/1024).toFixed(1)}MB). Limit is 10MB.`);
-            input.value = ""; return;
-        }
+    UPLOAD_DATA = {};
+    L2_DATA = {};
 
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            UPLOADS_DATA[id] = {
-                name: file.name,
-                mimeType: file.type,
-                data: reader.result.split(',')[1] // Get base64 string
+    document.getElementById('app-student-name').textContent = CURRENT_CHILD.name;
+    document.getElementById('app-student-track').textContent = `${CURRENT_CHILD.track} • ${CURRENT_CHILD.grade}`;
+    document.getElementById('app-status-badge').textContent = 'In Progress';
+    document.getElementById('app-status-badge').className = 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700';
+
+    document.getElementById('section-children').classList.add('hidden');
+    document.getElementById('section-application').classList.remove('hidden');
+    document.getElementById('btn-back').classList.remove('hidden');
+
+    // Reset steps
+    document.getElementById('chk-income').checked = false;
+    document.getElementById('chk-docs-ready').checked = false;
+    document.getElementById('btn-step1-next').disabled = true;
+    goToStep(1);
+    buildUploadForms();
+}
+
+function goToChildList() {
+    CURRENT_CHILD = null;
+    UPLOAD_DATA = {};
+    L2_DATA = {};
+    document.getElementById('section-children').classList.remove('hidden');
+    document.getElementById('section-application').classList.add('hidden');
+    document.getElementById('btn-back').classList.add('hidden');
+    document.getElementById('step-success').classList.add('hidden');
+}
+
+// ==========================================
+// STEP NAVIGATION
+// ==========================================
+function goToStep(step) {
+    [1, 2, 3].forEach(s => {
+        document.getElementById(`step-${s}`).classList.toggle('hidden', s !== step);
+        const pstep = document.getElementById(`pstep-${s}`);
+        pstep.classList.remove('active', 'done');
+        if (s < step) pstep.classList.add('done');
+        else if (s === step) pstep.classList.add('active');
+    });
+    [1, 2].forEach(l => {
+        document.getElementById(`pline-${l}`).classList.toggle('done', l < step);
+    });
+
+    if (step === 3) buildReviewSummary();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Enable Step 1 next button
+document.getElementById('chk-income').addEventListener('change', checkStep1Ready);
+document.getElementById('chk-docs-ready').addEventListener('change', checkStep1Ready);
+
+function checkStep1Ready() {
+    const ready = document.getElementById('chk-income').checked && document.getElementById('chk-docs-ready').checked;
+    document.getElementById('btn-step1-next').disabled = !ready;
+}
+
+// ==========================================
+// UPLOAD FORMS BUILDER
+// ==========================================
+function buildUploadForms() {
+    if (!CURRENT_CHILD) return;
+    const forms = TRACK_FORMS[CURRENT_CHILD.track] || [];
+    const container = document.getElementById('upload-forms-container');
+
+    container.innerHTML = forms.map(form => {
+        if (form.type === 'upload') {
+            return `
+                <div class="border border-gray-200 rounded-xl p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs" style="background: var(--clr-gold-light); color: var(--clr-forest)">${form.id}</span>
+                        <h4 class="font-semibold text-gray-800">${form.name}</h4>
+                    </div>
+                    <div class="upload-zone" id="zone-${form.id}" onclick="document.getElementById('file-${form.id}').click()"
+                         ondragover="event.preventDefault(); this.classList.add('dragover')"
+                         ondragleave="this.classList.remove('dragover')"
+                         ondrop="event.preventDefault(); this.classList.remove('dragover'); handleFileDrop(event, '${form.id}')">
+                        <input type="file" id="file-${form.id}" accept=".pdf,.jpg,.jpeg,.png" class="hidden" onchange="handleFileSelect(this, '${form.id}')">
+                        <div id="zone-content-${form.id}">
+                            <svg class="w-8 h-8 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                            <p class="text-sm text-gray-500">Click or drag to upload</p>
+                            <p class="text-xs text-gray-400 mt-1">PDF, JPG, or PNG • Max 10 MB</p>
+                        </div>
+                    </div>
+                </div>`;
+        } else if (form.type === 'teacher_info') {
+            return `
+                <div class="border border-gray-200 rounded-xl p-5">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs" style="background: var(--clr-gold-light); color: var(--clr-forest)">${form.id}</span>
+                        <h4 class="font-semibold text-gray-800">${form.name}</h4>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4">Please provide the contact information for two teachers who will write recommendation letters.</p>
+                    
+                    <div class="space-y-5">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="font-semibold text-sm text-gray-700 mb-3">Teacher 1</p>
+                            <div class="space-y-3">
+                                <input type="text" id="t1-name" placeholder="Teacher Full Name" class="form-input text-sm" oninput="checkL2Complete()">
+                                <input type="email" id="t1-email" placeholder="Teacher Email Address" class="form-input text-sm" oninput="checkL2Complete()">
+                                <input type="text" id="t1-school" placeholder="School Name" class="form-input text-sm" oninput="checkL2Complete()">
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="font-semibold text-sm text-gray-700 mb-3">Teacher 2</p>
+                            <div class="space-y-3">
+                                <input type="text" id="t2-name" placeholder="Teacher Full Name" class="form-input text-sm" oninput="checkL2Complete()">
+                                <input type="email" id="t2-email" placeholder="Teacher Email Address" class="form-input text-sm" oninput="checkL2Complete()">
+                                <input type="text" id="t2-school" placeholder="School Name" class="form-input text-sm" oninput="checkL2Complete()">
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        }
+    }).join('');
+}
+
+// ==========================================
+// FILE HANDLING
+// ==========================================
+function handleFileSelect(input, formId) {
+    if (input.files && input.files[0]) processFile(input.files[0], formId);
+}
+
+function handleFileDrop(event, formId) {
+    if (event.dataTransfer.files && event.dataTransfer.files[0]) {
+        processFile(event.dataTransfer.files[0], formId);
+    }
+}
+
+function processFile(file, formId) {
+    const validTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+    if (!validTypes.includes(file.type)) {
+        alert("Invalid file type. Please upload a PDF, JPG, or PNG file.");
+        return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+        alert("File too large. Maximum size is 10 MB.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        UPLOAD_DATA[formId] = {
+            file: file,
+            base64: e.target.result.split(',')[1],
+            fileName: file.name,
+            mimeType: file.type
+        };
+
+        // Update UI
+        const zone = document.getElementById(`zone-${formId}`);
+        zone.classList.add('uploaded');
+        document.getElementById(`zone-content-${formId}`).innerHTML = `
+            <div class="flex items-center justify-center gap-3">
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <div class="text-left">
+                    <p class="text-sm font-semibold text-green-700">${file.name}</p>
+                    <p class="text-xs text-gray-500">${(file.size / 1024 / 1024).toFixed(2)} MB • Click to replace</p>
+                </div>
+            </div>`;
+
+        checkStep2Ready();
+    };
+    reader.readAsDataURL(file);
+}
+
+function checkL2Complete() {
+    const fields = ['t1-name', 't1-email', 't1-school', 't2-name', 't2-email', 't2-school'];
+    const allFilled = fields.every(id => {
+        const el = document.getElementById(id);
+        return el && el.value.trim() !== '';
+    });
+
+    if (allFilled) {
+        L2_DATA = {
+            teacher1Name: document.getElementById('t1-name').value.trim(),
+            teacher1Email: document.getElementById('t1-email').value.trim(),
+            teacher1School: document.getElementById('t1-school').value.trim(),
+            teacher2Name: document.getElementById('t2-name').value.trim(),
+            teacher2Email: document.getElementById('t2-email').value.trim(),
+            teacher2School: document.getElementById('t2-school').value.trim()
+        };
+    } else {
+        L2_DATA = {};
+    }
+    checkStep2Ready();
+}
+
+function checkStep2Ready() {
+    if (!CURRENT_CHILD) return;
+    const forms = TRACK_FORMS[CURRENT_CHILD.track] || [];
+    let allReady = true;
+
+    forms.forEach(form => {
+        if (form.type === 'upload' && !UPLOAD_DATA[form.id]) allReady = false;
+        if (form.type === 'teacher_info' && Object.keys(L2_DATA).length === 0) allReady = false;
+    });
+
+    document.getElementById('btn-step2-next').disabled = !allReady;
+}
+
+// ==========================================
+// REVIEW SUMMARY
+// ==========================================
+function buildReviewSummary() {
+    if (!CURRENT_CHILD) return;
+    const forms = TRACK_FORMS[CURRENT_CHILD.track] || [];
+    const container = document.getElementById('review-summary');
+
+    let html = `<p class="text-sm font-semibold text-gray-700 mb-3">Uploaded Documents for ${CURRENT_CHILD.name}:</p>`;
+
+    forms.forEach(form => {
+        if (form.type === 'upload' && UPLOAD_DATA[form.id]) {
+            html += `
+                <div class="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0">
+                    <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <div>
+                        <p class="text-sm font-medium text-gray-800">Form ${form.id} — ${form.name}</p>
+                        <p class="text-xs text-gray-500">${UPLOAD_DATA[form.id].fileName}</p>
+                    </div>
+                </div>`;
+        } else if (form.type === 'teacher_info' && Object.keys(L2_DATA).length > 0) {
+            html += `
+                <div class="flex items-start gap-3 py-2 border-b border-gray-200 last:border-0">
+                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <div>
+                        <p class="text-sm font-medium text-gray-800">Form L2 — Teacher Recommendations</p>
+                        <p class="text-xs text-gray-500">1. ${L2_DATA.teacher1Name} (${L2_DATA.teacher1Email}) — ${L2_DATA.teacher1School}</p>
+                        <p class="text-xs text-gray-500">2. ${L2_DATA.teacher2Name} (${L2_DATA.teacher2Email}) — ${L2_DATA.teacher2School}</p>
+                    </div>
+                </div>`;
+        }
+    });
+
+    container.innerHTML = html;
+}
+
+function checkFinalReady() {
+    const ready = document.getElementById('chk-truth').checked
+        && document.getElementById('chk-no-ai').checked
+        && document.getElementById('chk-income-verify').checked;
+    document.getElementById('btn-submit').disabled = !ready;
+}
+
+// ==========================================
+// SUBMIT APPLICATION
+// ==========================================
+function submitApplication() {
+    if (!CURRENT_CHILD) return;
+    showLoading("Uploading documents and submitting application...\nThis may take a moment.");
+
+    const forms = TRACK_FORMS[CURRENT_CHILD.track] || [];
+    const uploads = {};
+
+    forms.forEach(form => {
+        if (form.type === 'upload' && UPLOAD_DATA[form.id]) {
+            uploads[form.id] = {
+                base64: UPLOAD_DATA[form.id].base64,
+                fileName: UPLOAD_DATA[form.id].fileName,
+                mimeType: UPLOAD_DATA[form.id].mimeType
             };
-            
-            // Update UI
-            document.getElementById(`zone_${id}`).classList.add('uploaded');
-            document.getElementById(`text_${id}`).innerHTML = `✅ <b>Uploaded:</b> ${file.name}`;
-            document.getElementById(`text_${id}`).classList.replace('text-gray-500', 'text-emerald-700');
-        };
-        reader.onerror = error => {
-            alert("Error reading file. Please try again.");
-            input.value = "";
-        };
-    }
-
-    // =========================================
-    // FINAL SUBMISSION LOGIC
-    // =========================================
-    async function submitApplication() {
-        if(!document.getElementById('check-truth').checked) {
-            alert("You must agree to the Final Attestation to submit."); return;
         }
+    });
 
-        let teacherData = null;
-        if (CURRENT_CHILD.track === "Future Leader") {
-            teacherData = {
-                t1_name: document.getElementById('t1_name').value,
-                t1_email: document.getElementById('t1_email').value,
-                t1_school: document.getElementById('t1_school').value,
-                t2_name: document.getElementById('t2_name').value,
-                t2_email: document.getElementById('t2_email').value,
-                t2_school: document.getElementById('t2_school').value,
-            };
+    const payload = {
+        action: 'submitApplication',
+        token: USER_TOKEN,
+        studentId: CURRENT_CHILD.studentId,
+        studentName: CURRENT_CHILD.name,
+        studentEmail: CURRENT_CHILD.studentEmail || "",
+        track: CURRENT_CHILD.track,
+        grade: CURRENT_CHILD.grade,
+        uploads: uploads,
+        teacherInfo: Object.keys(L2_DATA).length > 0 ? L2_DATA : null,
+        attestations: {
+            incomeUnder260k: true,
+            truthful: true,
+            noAI: true,
+            incomeVerificationConsent: true
         }
+    };
 
-        showLoading("Uploading & Submitting Application...");
-
-        const payload = {
-            action: "submitApplication",
-            token: parentToken,
-            parentEmail: parentEmail,
-            studentId: CURRENT_CHILD.id,
-            studentName: CURRENT_CHILD.name,
-            track: CURRENT_CHILD.track,
-            files: UPLOADS_DATA,
-            teachers: teacherData
-        };
-
-        try {
-            const response = await fetch(BACKEND_URL, {
-                method: "POST",
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-            
-            hideLoading();
-            if(result.status === "success") { 
-                document.getElementById('step-3').classList.add('hidden');
-                document.getElementById('step-success').classList.remove('hidden');
-            } else {
-                throw new Error(result.message || "Backend error");
-            }
-        } catch (error) {
-            console.error(error);
-            hideLoading();
-            alert("An error occurred during submission. Please check your network and try again.");
+    fetch(BACKEND_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+        hideLoading();
+        if (data.status === 'success') {
+            document.getElementById('step-3').classList.add('hidden');
+            document.getElementById('step-success').classList.remove('hidden');
+            // Update local child status
+            const child = CHILDREN.find(c => c.studentId === CURRENT_CHILD.studentId);
+            if (child) child.status = 'Submitted';
+        } else {
+            alert("Error: " + (data.message || "Submission failed. Please try again."));
         }
-    }
+    })
+    .catch(err => {
+        hideLoading();
+        alert("Failed to submit. Please check your connection and try again.");
+    });
+}
+
+// ==========================================
+// LOADING HELPERS
+// ==========================================
+function showLoading(text) {
+    document.getElementById('loading-text').textContent = text || "Processing...";
+    document.getElementById('loading-overlay').classList.remove('hidden');
+}
+
+function hideLoading() {
+    document.getElementById('loading-overlay').classList.add('hidden');
+}
+
 </script>
 </body>
 </html>
