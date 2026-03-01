@@ -36,6 +36,17 @@
         }
         .file-upload-box:hover { border-color: #0d9488; background-color: #f0fdfa; }
         .hidden-view { display: none; }
+        
+        /* Spinner for loading states */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #0d9488;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col items-center p-4 sm:p-8">
@@ -47,54 +58,59 @@
         </div>
         
         <div class="p-8 sm:p-12">
-            <h2 class="text-2xl font-bold text-slate-800 mb-4">Before You Apply</h2>
-            <p class="text-slate-600 mb-6">Welcome to the SVA Scholarship Portal. Please ensure you have downloaded, printed, filled out, and scanned the necessary forms for your child's specific scholarship track before logging in to submit.</p>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Step 1: Download Required Forms</h2>
+            <p class="text-slate-600 mb-6">Before starting an application, please download and complete the required forms for your student's specific scholarship track. You will need to upload scanned copies (PDF, JPG, or PNG under 10MB) during the application process.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-teal-300 transition">
                     <h3 class="font-bold text-teal-700 mb-2">Budding Scholar (K-2)</h3>
-                    <ul class="text-sm text-slate-600 space-y-2 mb-4">
-                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form B1 - Project Plan</a></li>
-                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form B2 - Family Pledge</a></li>
+                    <ul class="text-sm text-slate-600 space-y-3 mb-4">
+                        <li><a href="YOUR_LINK_TO_FORM_B1" target="_blank" class="flex items-center text-teal-600 hover:text-teal-800 font-semibold"><span class="mr-2">📄</span> Form B1 - Project Plan</a></li>
+                        <li><a href="YOUR_LINK_TO_FORM_B2" target="_blank" class="flex items-center text-teal-600 hover:text-teal-800 font-semibold"><span class="mr-2">📄</span> Form B2 - Family Pledge</a></li>
                     </ul>
                 </div>
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-teal-300 transition">
                     <h3 class="font-bold text-teal-700 mb-2">Junior Innovator (3-5)</h3>
-                    <ul class="text-sm text-slate-600 space-y-2 mb-4">
-                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form J1 - Family Pledge</a></li>
-                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form J3 - Project Log</a></li>
+                    <ul class="text-sm text-slate-600 space-y-3 mb-4">
+                        <li><a href="YOUR_LINK_TO_FORM_J1" target="_blank" class="flex items-center text-teal-600 hover:text-teal-800 font-semibold"><span class="mr-2">📄</span> Form J1 - Project Plan</a></li>
+                        <li><a href="YOUR_LINK_TO_FORM_J3" target="_blank" class="flex items-center text-teal-600 hover:text-teal-800 font-semibold"><span class="mr-2">📄</span> Form J3 - Project Log</a></li>
                     </ul>
                 </div>
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-teal-300 transition">
                     <h3 class="font-bold text-teal-700 mb-2">Future Leader (6-8)</h3>
-                    <ul class="text-sm text-slate-600 space-y-2 mb-4">
-                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form L1 - Resume Template</a></li>
-                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form L3 - Impact Proposal</a></li>
-                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form L5 - Family Pledge</a></li>
+                    <ul class="text-sm text-slate-600 space-y-3 mb-4">
+                        <li><a href="YOUR_LINK_TO_FORM_L1" target="_blank" class="flex items-center text-teal-600 hover:text-teal-800 font-semibold"><span class="mr-2">📄</span> Form L1 - Resume Template</a></li>
+                        <li><a href="YOUR_LINK_TO_FORM_L3" target="_blank" class="flex items-center text-teal-600 hover:text-teal-800 font-semibold"><span class="mr-2">📄</span> Form L3 - Impact Proposal</a></li>
+                        <li><a href="YOUR_LINK_TO_FORM_L5" target="_blank" class="flex items-center text-teal-600 hover:text-teal-800 font-semibold"><span class="mr-2">📄</span> Form L5 - Family Pledge</a></li>
                     </ul>
-                    <p class="text-xs text-slate-500 italic">*Note: Form L2 (Teacher Recs) will be filled out digitally in the portal.</p>
+                    <p class="text-xs text-slate-500 italic mt-4 pt-4 border-t border-slate-200">*Note: Form L2 (Teacher Recommendations) does not require a download. You will input the teacher contact info directly into the portal.</p>
                 </div>
             </div>
 
             <div class="bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-lg flex flex-col items-center text-center">
-                <h3 class="font-bold text-slate-800 mb-2">Ready to submit?</h3>
-                <p class="text-sm text-slate-600 mb-6">Sign in with your @svaschool.org parent account to access your students and upload documents.</p>
+                <h3 class="text-lg font-bold text-slate-800 mb-2">Step 2: Ready to Submit?</h3>
+                <p class="text-sm text-slate-600 mb-6">Sign in with your Google account to verify your enrolled students and upload your completed documents.</p>
                 <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID_HERE" data-callback="handleCredentialResponse" data-auto_select="false"></div>
                 <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="center"></div>
-                <button onclick="simulateLogin()" class="mt-4 text-xs text-slate-400 underline">Simulate Login (For Testing)</button>
             </div>
         </div>
+    </div>
+
+    <div id="view-loading" class="hidden-view w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 fade-in mt-10 text-center p-12">
+        <div class="flex justify-center mb-6"><div class="spinner"></div></div>
+        <h2 class="text-xl font-bold text-teal-700 mb-2" id="loading-text">Verifying Account...</h2>
+        <p class="text-slate-500 text-sm">Please wait while we securely connect to the SVA database.</p>
     </div>
 
     <div id="view-income-attest" class="hidden-view w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 fade-in mt-10">
         <div class="p-8">
             <h2 class="text-2xl font-bold text-slate-800 mb-6">Eligibility & Readiness</h2>
             <div class="space-y-4 mb-8">
-                <label class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100">
+                <label class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
                     <input type="checkbox" id="check-income" class="mt-1 w-5 h-5 text-teal-600 rounded border-gray-300 focus:ring-teal-500">
                     <span class="text-sm text-slate-700">I attest that our total household income is <strong>under $260,000/year</strong>, and I agree to provide verification documentation if this application is approved.</span>
                 </label>
-                <label class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100">
+                <label class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
                     <input type="checkbox" id="check-ready" class="mt-1 w-5 h-5 text-teal-600 rounded border-gray-300 focus:ring-teal-500">
                     <span class="text-sm text-slate-700">I confirm that <strong>all required documents are completed and scanned</strong>. (Please do not start this application if you are missing files).</span>
                 </label>
@@ -106,7 +122,7 @@
     <div id="view-student-select" class="hidden-view w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 fade-in mt-10">
         <div class="p-8">
             <h2 class="text-2xl font-bold text-slate-800 mb-2">Select Student</h2>
-            <p class="text-slate-600 mb-6">We found the following students registered to your account. Select who you are applying for today.</p>
+            <p class="text-slate-600 mb-6">We found the following students registered to your account in our database. Select who you are applying for today.</p>
             
             <div id="student-list" class="space-y-3 mb-8">
                 </div>
@@ -153,19 +169,14 @@
     </div>
 
 <script>
-    // --- STATE ---
+    // --- STATE & CONFIG ---
+    const BACKEND_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"; // Replace with real URL
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB limit
+
     let parentEmail = "";
     let parentToken = "";
     let availableStudents = [];
     let selectedStudent = null;
-    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-
-    // --- MOCK DATA (Remove when connecting to real backend) ---
-    const MOCK_STUDENTS = [
-        { id: "101", name: "Aisha Khan", grade: "1st Grade", track: "Budding Scholar" },
-        { id: "102", name: "Zayd Khan", grade: "4th Grade", track: "Junior Innovator" },
-        { id: "103", name: "Omar Khan", grade: "7th Grade", track: "Future Leader" }
-    ];
 
     // --- NAVIGATION LOGIC ---
     function showView(viewId) {
@@ -174,24 +185,46 @@
         window.scrollTo(0, 0);
     }
 
-    // --- AUTH LOGIC ---
+    // --- AUTH & FETCH LOGIC ---
     function handleCredentialResponse(response) {
         parentToken = response.credential;
+        // Decode JWT to get email
         const payload = JSON.parse(atob(response.credential.split('.')[1]));
         parentEmail = payload.email;
-        fetchStudentsFromBackend();
-    }
-
-    function simulateLogin() {
-        parentEmail = "parent@svaschool.org";
+        
         fetchStudentsFromBackend();
     }
 
     function fetchStudentsFromBackend() {
-        // In reality, you will do a fetch() to Apps Script here, passing parentEmail.
-        // For now, we use mock data.
-        availableStudents = MOCK_STUDENTS; 
-        showView('view-income-attest');
+        showView('view-loading');
+        document.getElementById('loading-text').innerText = "Fetching Student Records...";
+
+        fetch(BACKEND_URL, {
+            method: 'POST',
+            // Note: For standard Apps Script web apps fetching JSON data back, avoid 'no-cors' 
+            // otherwise the response body is opaque and unreadable.
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // 'text/plain' helps avoid preflight CORS issues in GAS
+            body: JSON.stringify({
+                action: 'getStudents',
+                token: parentToken,
+                parentEmail: parentEmail
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success' && data.data.length > 0) {
+                availableStudents = data.data; // Expected format: [{id, name, grade, track}, ...]
+                showView('view-income-attest');
+            } else {
+                alert("No eligible students found linked to this email address in our database. Please contact the SVA administration.");
+                showView('view-landing');
+            }
+        })
+        .catch(err => {
+            console.error("Backend Error:", err);
+            alert("Unable to connect to the backend database. Please check your connection or try again later.");
+            showView('view-landing');
+        });
     }
 
     function proceedToStudentSelect() {
@@ -222,7 +255,8 @@
 
     // --- FORM GENERATION LOGIC ---
     function selectStudent(id) {
-        selectedStudent = availableStudents.find(s => s.id === id);
+        // Must use loose equality or convert to string in case backend returns IDs as numbers
+        selectedStudent = availableStudents.find(s => String(s.id) === String(id));
         document.getElementById('app-student-name').innerText = selectedStudent.name;
         document.getElementById('app-scholarship-type').innerText = selectedStudent.track;
         
@@ -234,7 +268,7 @@
             uploadsContainer.innerHTML += createFileInput('Form B2 - Family Pledge', 'file_b2');
         } 
         else if (selectedStudent.track === "Junior Innovator") {
-            uploadsContainer.innerHTML += createFileInput('Form J1 - Family Pledge', 'file_j1');
+            uploadsContainer.innerHTML += createFileInput('Form J1 - Project Plan', 'file_j1');
             uploadsContainer.innerHTML += createFileInput('Form J3 - Project Log', 'file_j3');
         } 
         else if (selectedStudent.track === "Future Leader") {
@@ -291,7 +325,7 @@
 
     // --- SUBMISSION LOGIC ---
     
-    // Helper to convert file to Base64 so Apps Script can read it
+    // Convert file to Base64
     function getBase64(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -299,7 +333,7 @@
             reader.onload = () => resolve({
                 name: file.name,
                 mimeType: file.type,
-                data: reader.result.split(',')[1] // Get actual base64 string
+                data: reader.result.split(',')[1] // Strip Data URL prefix for GAS
             });
             reader.onerror = error => reject(error);
         });
@@ -312,7 +346,7 @@
             return;
         }
 
-        // Gather File Inputs dynamically based on what exists in the DOM
+        // Validate Files
         const fileInputs = document.querySelectorAll('.file-input');
         let filesValid = true;
         let filesToUpload = {};
@@ -324,11 +358,30 @@
                 break;
             }
         }
+        
+        // Validate Teacher Fields if Future Leader
+        let teacherData = null;
+        if (selectedStudent.track === "Future Leader") {
+            const t1Name = document.getElementById('t1_name').value;
+            const t1Email = document.getElementById('t1_email').value;
+            const t1School = document.getElementById('t1_school').value;
+            const t2Name = document.getElementById('t2_name').value;
+            const t2Email = document.getElementById('t2_email').value;
+            const t2School = document.getElementById('t2_school').value;
+
+            if (!t1Name || !t1Email || !t1School || !t2Name || !t2Email || !t2School) {
+                alert("Please fill out all Teacher Recommendation fields.");
+                filesValid = false;
+            } else {
+                teacherData = { t1_name: t1Name, t1_email: t1Email, t1_school: t1School, t2_name: t2Name, t2_email: t2Email, t2_school: t2School };
+            }
+        }
+
         if (!filesValid) return;
 
         const btn = document.getElementById('submit-btn');
         btn.disabled = true;
-        btn.innerText = "Processing Files & Submitting... Please wait";
+        btn.innerText = "Uploading Files & Submitting... Please wait";
 
         try {
             // Process files
@@ -336,21 +389,9 @@
                 filesToUpload[input.id] = await getBase64(input.files[0]);
             }
 
-            // Gather L2 Teacher data if it exists
-            let teacherData = null;
-            if (selectedStudent.track === "Future Leader") {
-                teacherData = {
-                    t1_name: document.getElementById('t1_name').value,
-                    t1_email: document.getElementById('t1_email').value,
-                    t1_school: document.getElementById('t1_school').value,
-                    t2_name: document.getElementById('t2_name').value,
-                    t2_email: document.getElementById('t2_email').value,
-                    t2_school: document.getElementById('t2_school').value,
-                };
-            }
-
             const payload = {
                 action: "submitApplication",
+                token: parentToken,
                 parentEmail: parentEmail,
                 studentId: selectedStudent.id,
                 studentName: selectedStudent.name,
@@ -359,21 +400,23 @@
                 teachers: teacherData
             };
 
-            // ====== REAL FETCH CALL GOES HERE ======
-            /*
-            const response = await fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL", {
+            const response = await fetch(BACKEND_URL, {
                 method: "POST",
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify(payload)
             });
-            const result = await response.json();
-            if(result.status === "success") { showView('view-success'); }
-            */
             
-            // SIMULATED SUCCESS:
-            setTimeout(() => { showView('view-success'); }, 1500);
+            const result = await response.json();
+            
+            if(result.status === "success") { 
+                showView('view-success'); 
+            } else {
+                throw new Error(result.message || "Backend error during submission");
+            }
 
         } catch (error) {
-            alert("An error occurred reading the files. Please try again.");
+            console.error("Submission Error:", error);
+            alert("An error occurred during submission. Please check your network connection and try again.");
             btn.disabled = false;
             btn.innerText = "Submit Application";
         }
