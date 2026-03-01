@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVA Scholarship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #cbd5e1;
+            background-color: #ffffff;
+            transition: all 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #0d9488;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+        }
+        .file-upload-box {
+            border: 2px dashed #cbd5e1;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            background-color: #f8fafc;
+            transition: all 0.2s;
+        }
+        .file-upload-box:hover { border-color: #0d9488; background-color: #f0fdfa; }
+        .hidden-view { display: none; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col items-center p-4 sm:p-8">
+
+    <div id="view-landing" class="w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 fade-in">
+        <div class="bg-teal-700 p-10 text-white text-center relative overflow-hidden">
+            <h1 class="text-3xl font-bold mb-4 relative z-10">SVA Scholarship Application Portal</h1>
+            <p class="text-teal-100 max-w-2xl mx-auto relative z-10">Empowering tomorrow's leaders, innovators, and scholars today.</p>
+        </div>
+        
+        <div class="p-8 sm:p-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Before You Apply</h2>
+            <p class="text-slate-600 mb-6">Welcome to the SVA Scholarship Portal. Please ensure you have downloaded, printed, filled out, and scanned the necessary forms for your child's specific scholarship track before logging in to submit.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-teal-700 mb-2">Budding Scholar (K-2)</h3>
+                    <ul class="text-sm text-slate-600 space-y-2 mb-4">
+                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form B1 - Project Plan</a></li>
+                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form B2 - Family Pledge</a></li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-teal-700 mb-2">Junior Innovator (3-5)</h3>
+                    <ul class="text-sm text-slate-600 space-y-2 mb-4">
+                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form J1 - Family Pledge</a></li>
+                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form J3 - Project Log</a></li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-teal-700 mb-2">Future Leader (6-8)</h3>
+                    <ul class="text-sm text-slate-600 space-y-2 mb-4">
+                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form L1 - Resume Template</a></li>
+                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form L3 - Impact Proposal</a></li>
+                        <li><a href="#" class="text-teal-600 hover:underline">📄 Form L5 - Family Pledge</a></li>
+                    </ul>
+                    <p class="text-xs text-slate-500 italic">*Note: Form L2 (Teacher Recs) will be filled out digitally in the portal.</p>
+                </div>
+            </div>
+
+            <div class="bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-lg flex flex-col items-center text-center">
+                <h3 class="font-bold text-slate-800 mb-2">Ready to submit?</h3>
+                <p class="text-sm text-slate-600 mb-6">Sign in with your @svaschool.org parent account to access your students and upload documents.</p>
+                <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID_HERE" data-callback="handleCredentialResponse" data-auto_select="false"></div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="center"></div>
+                <button onclick="simulateLogin()" class="mt-4 text-xs text-slate-400 underline">Simulate Login (For Testing)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-income-attest" class="hidden-view w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 fade-in mt-10">
+        <div class="p-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6">Eligibility & Readiness</h2>
+            <div class="space-y-4 mb-8">
+                <label class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100">
+                    <input type="checkbox" id="check-income" class="mt-1 w-5 h-5 text-teal-600 rounded border-gray-300 focus:ring-teal-500">
+                    <span class="text-sm text-slate-700">I attest that our total household income is <strong>under $260,000/year</strong>, and I agree to provide verification documentation if this application is approved.</span>
+                </label>
+                <label class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100">
+                    <input type="checkbox" id="check-ready" class="mt-1 w-5 h-5 text-teal-600 rounded border-gray-300 focus:ring-teal-500">
+                    <span class="text-sm text-slate-700">I confirm that <strong>all required documents are completed and scanned</strong>. (Please do not start this application if you are missing files).</span>
+                </label>
+            </div>
+            <button onclick="proceedToStudentSelect()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg shadow transition">Continue</button>
+        </div>
+    </div>
+
+    <div id="view-student-select" class="hidden-view w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 fade-in mt-10">
+        <div class="p-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">Select Student</h2>
+            <p class="text-slate-600 mb-6">We found the following students registered to your account. Select who you are applying for today.</p>
+            
+            <div id="student-list" class="space-y-3 mb-8">
+                </div>
+        </div>
+    </div>
+
+    <div id="view-application" class="hidden-view w-full max-w-3xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 fade-in mt-10">
+        <div class="bg-teal-700 p-6 text-white flex justify-between items-center">
+            <div>
+                <h2 class="text-xl font-bold" id="app-student-name">Student Name</h2>
+                <p class="text-teal-100 text-sm" id="app-scholarship-type">Scholarship Type</p>
+            </div>
+            <button onclick="goToSelect()" class="text-sm text-teal-100 hover:text-white underline">Back to Students</button>
+        </div>
+        
+        <div class="p-8">
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6 text-sm text-amber-800">
+                <strong>Upload Rules:</strong> Files must be PDF, JPG, or PNG format and less than 10MB each.
+            </div>
+
+            <form id="upload-form" class="space-y-6">
+                <div id="dynamic-uploads" class="space-y-6"></div>
+
+                <div class="border-t border-slate-200 pt-8 mt-8">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Final Attestation</h3>
+                    <label class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
+                        <input type="checkbox" id="check-truth" required class="mt-1 w-5 h-5 text-teal-600 rounded border-gray-300 focus:ring-teal-500">
+                        <span class="text-sm text-slate-700">I certify that all information provided is true and accurate to the best of my knowledge, and that <strong>no Artificial Intelligence (AI) tools were used</strong> to assist my child in generating the content of these submissions.</span>
+                    </label>
+                </div>
+
+                <button type="button" onclick="submitApplication()" id="submit-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 rounded-lg shadow-md transition mt-6 text-lg">
+                    Submit Application
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="view-success" class="hidden-view w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 fade-in mt-10 text-center p-12">
+        <div class="text-6xl mb-4">🎉</div>
+        <h2 class="text-3xl font-bold text-teal-700 mb-2">Application Received!</h2>
+        <p class="text-slate-600 mb-8">Your documents have been securely uploaded to the SVA portal. We will review your application and be in touch soon.</p>
+        <button onclick="window.location.reload()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2 px-6 rounded-lg transition">Return to Home</button>
+    </div>
+
+<script>
+    // --- STATE ---
+    let parentEmail = "";
+    let parentToken = "";
+    let availableStudents = [];
+    let selectedStudent = null;
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
+    // --- MOCK DATA (Remove when connecting to real backend) ---
+    const MOCK_STUDENTS = [
+        { id: "101", name: "Aisha Khan", grade: "1st Grade", track: "Budding Scholar" },
+        { id: "102", name: "Zayd Khan", grade: "4th Grade", track: "Junior Innovator" },
+        { id: "103", name: "Omar Khan", grade: "7th Grade", track: "Future Leader" }
+    ];
+
+    // --- NAVIGATION LOGIC ---
+    function showView(viewId) {
+        document.querySelectorAll('div[id^="view-"]').forEach(el => el.classList.add('hidden-view'));
+        document.getElementById(viewId).classList.remove('hidden-view');
+        window.scrollTo(0, 0);
+    }
+
+    // --- AUTH LOGIC ---
+    function handleCredentialResponse(response) {
+        parentToken = response.credential;
+        const payload = JSON.parse(atob(response.credential.split('.')[1]));
+        parentEmail = payload.email;
+        fetchStudentsFromBackend();
+    }
+
+    function simulateLogin() {
+        parentEmail = "parent@svaschool.org";
+        fetchStudentsFromBackend();
+    }
+
+    function fetchStudentsFromBackend() {
+        // In reality, you will do a fetch() to Apps Script here, passing parentEmail.
+        // For now, we use mock data.
+        availableStudents = MOCK_STUDENTS; 
+        showView('view-income-attest');
+    }
+
+    function proceedToStudentSelect() {
+        if (!document.getElementById('check-income').checked || !document.getElementById('check-ready').checked) {
+            alert("Please check both attestation boxes to proceed.");
+            return;
+        }
+        
+        const listDiv = document.getElementById('student-list');
+        listDiv.innerHTML = '';
+        availableStudents.forEach(student => {
+            listDiv.innerHTML += `
+                <div onclick="selectStudent('${student.id}')" class="p-4 border border-slate-200 rounded-lg cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition flex justify-between items-center bg-slate-50">
+                    <div>
+                        <h3 class="font-bold text-slate-800">${student.name}</h3>
+                        <p class="text-sm text-slate-500">Grade: ${student.grade}</p>
+                    </div>
+                    <span class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full">${student.track}</span>
+                </div>
+            `;
+        });
+        showView('view-student-select');
+    }
+
+    function goToSelect() {
+        showView('view-student-select');
+    }
+
+    // --- FORM GENERATION LOGIC ---
+    function selectStudent(id) {
+        selectedStudent = availableStudents.find(s => s.id === id);
+        document.getElementById('app-student-name').innerText = selectedStudent.name;
+        document.getElementById('app-scholarship-type').innerText = selectedStudent.track;
+        
+        const uploadsContainer = document.getElementById('dynamic-uploads');
+        uploadsContainer.innerHTML = ''; // Clear previous
+
+        if (selectedStudent.track === "Budding Scholar") {
+            uploadsContainer.innerHTML += createFileInput('Form B1 - Project Plan', 'file_b1');
+            uploadsContainer.innerHTML += createFileInput('Form B2 - Family Pledge', 'file_b2');
+        } 
+        else if (selectedStudent.track === "Junior Innovator") {
+            uploadsContainer.innerHTML += createFileInput('Form J1 - Family Pledge', 'file_j1');
+            uploadsContainer.innerHTML += createFileInput('Form J3 - Project Log', 'file_j3');
+        } 
+        else if (selectedStudent.track === "Future Leader") {
+            uploadsContainer.innerHTML += createFileInput('Form L1 - Resume', 'file_l1');
+            uploadsContainer.innerHTML += createFileInput('Form L3 - Impact Proposal', 'file_l3');
+            uploadsContainer.innerHTML += createFileInput('Form L5 - Family Pledge', 'file_l5');
+            
+            // Add L2 Teacher Form inputs
+            uploadsContainer.innerHTML += `
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 mt-6">
+                    <h3 class="font-bold text-slate-800 mb-4">Form L2 - Teacher Recommendations</h3>
+                    <p class="text-sm text-slate-600 mb-4">Please provide the contact info for two teachers who will be sending recommendations.</p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <h4 class="text-sm font-bold text-teal-700">Teacher 1</h4>
+                        <input type="text" id="t1_name" placeholder="Full Name" class="form-input text-sm" required>
+                        <input type="email" id="t1_email" placeholder="Email Address" class="form-input text-sm" required>
+                        <input type="text" id="t1_school" placeholder="School Name" class="form-input text-sm" required>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h4 class="text-sm font-bold text-teal-700">Teacher 2</h4>
+                        <input type="text" id="t2_name" placeholder="Full Name" class="form-input text-sm" required>
+                        <input type="email" id="t2_email" placeholder="Email Address" class="form-input text-sm" required>
+                        <input type="text" id="t2_school" placeholder="School Name" class="form-input text-sm" required>
+                    </div>
+                </div>
+            `;
+        }
+        
+        showView('view-application');
+    }
+
+    function createFileInput(label, id) {
+        return `
+            <div>
+                <label class="block text-sm font-bold text-slate-700 mb-2">${label} <span class="text-red-500">*</span></label>
+                <div class="file-upload-box">
+                    <input type="file" id="${id}" accept=".pdf, .jpg, .jpeg, .png" class="file-input w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100" required onchange="validateFileSize(this)">
+                </div>
+            </div>
+        `;
+    }
+
+    function validateFileSize(input) {
+        if (input.files.length > 0) {
+            const size = input.files[0].size;
+            if (size > MAX_FILE_SIZE) {
+                alert(`File is too large (${(size/1024/1024).toFixed(1)}MB). Limit is 10MB.`);
+                input.value = ""; // Clear the input
+            }
+        }
+    }
+
+    // --- SUBMISSION LOGIC ---
+    
+    // Helper to convert file to Base64 so Apps Script can read it
+    function getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve({
+                name: file.name,
+                mimeType: file.type,
+                data: reader.result.split(',')[1] // Get actual base64 string
+            });
+            reader.onerror = error => reject(error);
+        });
+    }
+
+    async function submitApplication() {
+        // Validate Truth Checkbox
+        if (!document.getElementById('check-truth').checked) {
+            alert("You must agree to the Final Attestation to submit.");
+            return;
+        }
+
+        // Gather File Inputs dynamically based on what exists in the DOM
+        const fileInputs = document.querySelectorAll('.file-input');
+        let filesValid = true;
+        let filesToUpload = {};
+
+        for (let input of fileInputs) {
+            if (input.files.length === 0) {
+                alert(`Please upload all required files.`);
+                filesValid = false;
+                break;
+            }
+        }
+        if (!filesValid) return;
+
+        const btn = document.getElementById('submit-btn');
+        btn.disabled = true;
+        btn.innerText = "Processing Files & Submitting... Please wait";
+
+        try {
+            // Process files
+            for (let input of fileInputs) {
+                filesToUpload[input.id] = await getBase64(input.files[0]);
+            }
+
+            // Gather L2 Teacher data if it exists
+            let teacherData = null;
+            if (selectedStudent.track === "Future Leader") {
+                teacherData = {
+                    t1_name: document.getElementById('t1_name').value,
+                    t1_email: document.getElementById('t1_email').value,
+                    t1_school: document.getElementById('t1_school').value,
+                    t2_name: document.getElementById('t2_name').value,
+                    t2_email: document.getElementById('t2_email').value,
+                    t2_school: document.getElementById('t2_school').value,
+                };
+            }
+
+            const payload = {
+                action: "submitApplication",
+                parentEmail: parentEmail,
+                studentId: selectedStudent.id,
+                studentName: selectedStudent.name,
+                track: selectedStudent.track,
+                files: filesToUpload,
+                teachers: teacherData
+            };
+
+            // ====== REAL FETCH CALL GOES HERE ======
+            /*
+            const response = await fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL", {
+                method: "POST",
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+            if(result.status === "success") { showView('view-success'); }
+            */
+            
+            // SIMULATED SUCCESS:
+            setTimeout(() => { showView('view-success'); }, 1500);
+
+        } catch (error) {
+            alert("An error occurred reading the files. Please try again.");
+            btn.disabled = false;
+            btn.innerText = "Submit Application";
+        }
+    }
+</script>
+</body>
+</html>
